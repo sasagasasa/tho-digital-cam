@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tho.Digital Cam - Danh Sách Sản Phẩm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --pink-main: #ffc1cc;
+            --pink-dark: #ff8fa3;
+            --pink-light: #fff0f3;
+            --text: #5d5d5d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--pink-light);
+            margin: 0;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-left a {
+            text-decoration: none;
+            color: var(--pink-dark);
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-right a {
+            text-decoration: none;
+            color: #888;
+            margin-left: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .nav-right a:hover { color: var(--pink-dark); }
+
+        header {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 2px solid var(--pink-main);
+            margin-bottom: 20px;
+        }
+
+        .logo { font-weight: bold; letter-spacing: 3px; color: var(--pink-dark); margin: 0; text-transform: uppercase; }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(255, 143, 163, 0.1);
+            border: 1px solid #ffe4e9;
+            display: flex;
+            flex-direction: column;
+        }
+                /* --- BỘ LỌC SẢN PHẨM --- */
+        .filter-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid var(--pink-main);
+            color: var(--pink-dark);
+            padding: 8px 20px;
+            margin: 5px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--pink-dark);
+            color: white;
+            border-color: var(--pink-dark);
+        }
+
+        /* --- ĐÃ SỬA LẠI PADDING CHO VỪA MẮT --- */
+        .cam-img {
+            width: 100%;
+            height: 250px; 
+            background: #fdf2f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 15px; /* Giảm padding xuống */
+            box-sizing: border-box;
+            border-bottom: 1px solid #ffe4e9;
+        }
+
+        .content { padding: 15px; flex-grow: 1; }
+        .cam-name { font-size: 1.2rem; color: var(--pink-dark); margin: 0 0 10px 0; }
+
+        .price-grid {
+            display: grid;
+            /* Bắt buộc chia 4 cột bằng nhau */
+            grid-template-columns: repeat(4, 1fr); 
+            /* Giảm khoảng cách giữa các ô còn 3px để tiết kiệm chỗ */
+            gap: 3px; 
+            margin-bottom: 10px;
+        }
+        .p-box {
+            background: var(--pink-light);
+            padding: 5px 1px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.75rem;
+        }
+        .p-box span {
+           /* Ép chữ 'giờ' nhỏ lại xíu cho chắc ăn */
+            font-size: 0.65rem; 
+            display: block;
+            color: #888;
+        }
+        .p-box strong { color: var(--pink-dark); display: block; font-size: 0.85rem; }
+        
+        .extra-fee {
+            background: #fff9f0;
+            color: #e67e22;
+            padding: 5px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            text-align: center;
+            margin-bottom: 10px;
+            border: 1px dashed #ffb347;
+        }
+
+        .fb-container {
+            background: #fffafa;
+            padding: 10px;
+            border-top: 1px solid #eee;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .fb-track {
+            display: flex;
+            width: calc(250px * 6); 
+            animation: scroll 15s linear infinite;
+        }
+
+        .fb-card {
+            width: 200px;
+            flex-shrink: 0;
+            background: white;
+            margin-right: 15px;
+            padding: 8px;
+            border-radius: 10px;
+            border: 1px solid #ffe4e9;
+            font-size: 0.7rem;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-215px * 3)); } 
+        }
+
+        .fb-container:hover .fb-track { animation-play-state: paused; }
+
+        .btn {
+            display: block;
+            background: var(--pink-dark);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #ff758c; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-left">
+        <a href="index.html">
+            <i class="fas fa-arrow-left"></i> Về Trang Chủ
+        </a>
+    </div>
+    <div class="nav-right">
+        <a href="feedback.html">Feedback</a>
+        <a href="trang-gop-y.html">Trang góp ý</a>
+        <a href="dia-chi.html">Địa chỉ</a>
+        <a href="huong-dan.html">Hướng dẫn thuê</a>
+    </div>
+</nav>
+
+<header>
+    <h1 class="logo">🌸 THO.DIGITAL CAM 🌸</h1>
+    <p style="margin:5px 0 0; font-size: 0.8rem; color:#888">Tiệm cho thuê máy ảnh vibe Hồng/Trắng xinh xỉu</p>
+</header>
+<div class="filter-container">
+    <button class="filter-btn active" onclick="filterCams('all', this)">Tất cả</button>
+    <button class="filter-btn" onclick="filterCams('canon', this)">Canon</button>
+    <button class="filter-btn" onclick="filterCams('fujifilm', this)">Fujifilm</button>
+    <button class="filter-btn" onclick="filterCams('casio', this)">Casio</button>
+</div>
+<div class="container" id="camera-list">
+</div>
+
+<script>
+    const cameras = [
+        { name: "Canon G7X Mark II", brand: "canon", p6h: "85k", p12h: "170k", p1d: "250k", p7d: "1.500k", img: "Canon G7X Mark II" },
+        { name: "Canon R50", brand: "canon", p6h: "85k", p12h: "170k", p1d: "250k", p7d: "1.500k", img: "Canon R50" },
+        { name: "Canon EOS M200", brand: "canon", p6h: "75k", p12h: "150k", p1d: "230k", p7d: "1.400k", img: "Canon EOS M200" },
+        { name: "Canon EOS M10", brand: "canon", p6h: "75k", p12h: "150k", p1d: "230k", p7d: "1.400k", img: "Canon EOS M10" },
+        { name: "Canon EOS M3", brand: "canon", p6h: "75k", p12h: "160k", p1d: "240k", p7d: "1.450k", img: "Canon EOS M3" },
+        { name: "Fujifilm XT100", brand: "fujifilm", p6h: "85k", p12h: "160k", p1d: "240k", p7d: "1.450k", img: "Fujifilm XT100" },
+        { name: "Fujifilm XT120", brand: "fujifilm", p6h: "55k", p12h: "170k", p1d: "250k", p7d: "1.500k", img: "Fujifilm XT120" },
+        { name: "Fujifilm X-A3", brand: "fujifilm", p6h: "75k", p12h: "150k", p1d: "230k", p7d: "1.300k", img: "Fujifilm X-A3" },
+        { name: "Fujifilm X-A2", brand: "fujifilm", p6h: "70k", p12h: "140k", p1d: "220k", p7d: "1.350k", img: "Fujifilm X-A2" },
+        { name: "Casio ZR 36000", brand: "casio", p6h: "45k", p12h: "120k", p1d: "200k", p7d: "1.200k", img: "Casio ZR 36000" },
+        { name: "Casio ZR-20", brand: "casio", p6h: "50k", p12h: "120k", p1d: "200k", p7d: "300k", img: "Casio ZR-20" }
+    ];
+
+    const container = document.getElementById('camera-list');
+
+    // Hàm hiển thị danh sách máy
+    function renderCameras(list) {
+        container.innerHTML = ""; // Xóa danh sách cũ
+        list.forEach(cam => {
+            const card = `
+                <div class="card">
+                    <div class="cam-img">
+                        <img src="images/${cam.img}.png" alt="${cam.name}" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="content">
+                        <h2 class="cam-name">${cam.name}</h2>
+                        <div class="price-grid">
+                            <div class="p-box"><span>6 giờ</span><strong>${cam.p6h}</strong></div>
+                            <div class="p-box"><span>12 giờ</span><strong>${cam.p12h}</strong></div>
+                            <div class="p-box"><span>1 ngày</span><strong>${cam.p1d}</strong></div>
+                            <div class="p-box"><span>1 tuần</span><strong>${cam.p7d}</strong></div>
+                        </div>
+                        <div class="extra-fee">Mượn thêm: +120k/ngày</div>
+                    </div>
+                    
+                    <div class="fb-container">
+                        <div class="fb-track">
+                            <div class="fb-card"><b>@khach:</b> Máy xinh, nịnh da...</div>
+                            <div class="fb-card"><b>@khach:</b> Shop nhiệt tình...</div>
+                            <div class="fb-card"><b>@khach:</b> Sẽ ủng hộ tiếp...</div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 10px">
+                        <a href="https://zalo.me/sdt_cua_ong" class="btn">THUÊ NGAY</a>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    }
+
+    // Hàm lọc sản phẩm
+    function filterCams(brand, btn) {
+        // 1. Đổi màu nút active
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // 2. Lọc dữ liệu
+        if (brand === 'all') {
+            renderCameras(cameras);
+        } else {
+            const filtered = cameras.filter(cam => cam.brand === brand);
+            renderCameras(filtered);
+        }
+    }
+
+    // Chạy lần đầu để hiện tất cả máy
+    renderCameras(cameras);
+</script>
+
+</body>
+</html>

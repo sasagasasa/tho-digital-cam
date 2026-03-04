@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góp ý cho Tho.Digital</title>
+    <style>
+        :root { --pink: #ffc1cc; --dark-pink: #ff8fa3; }
+        body { font-family: 'Segoe UI', sans-serif; background: #fff; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .form-container { max-width: 500px; width: 100%; background: #fffafb; padding: 30px; border-radius: 30px; border: 2px solid var(--pink); }
+        h2 { color: var(--dark-pink); text-align: center; }
+        label { display: block; margin: 15px 0 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 12px; border: 1px solid var(--pink); border-radius: 10px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: var(--dark-pink); color: white; border: none; border-radius: 10px; margin-top: 20px; font-weight: bold; cursor: pointer; }
+        .note { font-size: 0.8rem; color: #888; margin-top: 10px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <a href="index.html" style="text-decoration:none; color:var(--dark-pink)">← Trang chủ</a>
+        <h2>Góp ý & Phản hồi</h2>
+        <p style="text-align:center; font-size:0.9rem">Nếu có điều gì làm bạn chưa hài lòng, hãy nói cho Tho.Digital biết nhé!</p>
+        <form>
+            <label>Tên của bạn/Username:</label>
+            <input type="text" placeholder="Nhập tên của bạn...">
+            <label>Nội dung bất cập/Góp ý:</label>
+            <textarea rows="5" placeholder="Ví dụ: Máy hơi bụi, lens bị kẹt nắp..."></textarea>
+            <button type="button" onclick="alert('Cảm ơn bạn! Tho.Digital đã ghi nhận và sẽ phản hồi sớm nhất.')">GỬI GÓP Ý</button>
+        </form>
+        <p class="note">Mọi thông tin của bạn sẽ được bảo mật tuyệt đối.</p>
+    </div>
+</body>
+</html>
